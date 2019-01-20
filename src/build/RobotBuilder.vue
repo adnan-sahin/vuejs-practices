@@ -122,13 +122,13 @@ export default {
   methods: {
     addToCart() {
       const robot = this.selectedRobot;
+      // eslint-disable-next-line no-multi-spaces
       const cost =        robot.head.cost
         + robot.leftArm.cost
         + robot.rightArm.cost
         + robot.torso.cost
         + robot.base.cost;
       this.cart.push(Object.assign({}, robot, { cost }));
-      console.log(this.cart);
     },
   },
 };
