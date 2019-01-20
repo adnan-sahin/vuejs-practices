@@ -1,4 +1,4 @@
-# build-a-bot
+# vuejs-best-practices
 
 ## Project setup
 ```
