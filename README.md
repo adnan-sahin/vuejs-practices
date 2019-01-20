@@ -1,4 +1,4 @@
-# vuejs-best-practices
+# vuejs-practices
 
 ## Project setup
 ```
