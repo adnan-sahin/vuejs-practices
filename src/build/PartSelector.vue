@@ -1,5 +1,6 @@
 <template>
   <div class="part" :class="position">
+     {{pinPadding}}
     <!-- <img @click="showPartInfo()" :src="selectedPart.src" title="arm"> -->
     <router-link
       :to="{name:'Parts',params:{id: this.selectedPart.id, partType: this.selectedPart.type }}"
@@ -8,11 +9,16 @@
     </router-link>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
-    <span class="sale" v-show="selectedPart.onSale">Sale!</span>
+    <!-- <span v-pin:position.right.top class="sale" v-show="selectedPart.onSale">Sale!</span> -->
+    <span @click="pinPadding='15px'" v-pin="{right:pinPadding, top:pinPadding}" class="sale" v-show="selectedPart.onSale">Sale!</span>
   </div>
 </template>
 
+
 <script>
+
+// import pinDirective from '../shared/pin-directive';
+
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
   return deprecatedIndex < 0 ? length - 1 : deprecatedIndex;
@@ -23,6 +29,9 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
+  // directives: {
+  //   pin: pinDirective,
+  // },
   //   props: ['parts', 'position'],
   props: {
     parts: { type: Array, required: true },
@@ -35,7 +44,7 @@ export default {
     },
   },
   data() {
-    return { selectedPartIndex: 0 };
+    return { selectedPartIndex: 0, pinPadding: '5px' };
   },
   computed: {
     selectedPart() {
@@ -83,9 +92,10 @@ export default {
   border: 3px solid #aaa;
 }
 .sale {
-  position: absolute;
+  /* position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 5px; */
+  cursor: pointer;
   color: white;
   background-color: red;
   padding: 3px;

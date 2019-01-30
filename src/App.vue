@@ -39,6 +39,8 @@
 // import HomePage from './home/HomePage.vue';
 // import RobotBuilder from './build/RobotBuilder.vue';
 
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'app',
   components: {
@@ -47,8 +49,34 @@ export default {
   },
   computed: {
     cart() {
-      return this.$store.state.cart;
+      return this.$store.state.robots.cart;
     },
+    ...mapState({ rootFoo: 'foo', robotsFoo: state => state.robots.foo }),
+    // rootFoo() {
+    //   return this.$store.state.foo;
+    // },
+    // robotsFoo() {
+    //   return this.$store.state.robots.foo;
+    // },
+    ...mapState('users', { usersFoo: 'foo' }),
+    // usersFoo() {
+    //   return this.$store.state.users.foo;
+    // },
+
+    ...mapGetters({ rootGetterFoo: 'foo' }),
+    // rootGetterFoo() {
+    //   return this.$store.getters.foo;
+    // },
+
+    ...mapGetters('users', { usersGetterFoo: 'foo' }),
+    ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
+
+    // usersGetterFoo() {
+    //   return this.$store.getters['users/foo'];
+    // },
+    // robotsGetterFoo() {
+    //   return this.$store.getters['robots/foo'];
+    // },
   },
 };
 </script>
